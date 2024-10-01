@@ -9,6 +9,7 @@ const PORT = 3000;
 //Define Middleware
 //middleware is simply functions that run on every request
 app.use(express.json());
+//This middleware is needed to get data from the request body
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
@@ -53,6 +54,15 @@ app.get("/courses/:id", (req, res) => {
 //POST request passes data in the body
 app.post("/courses", (req, res) => {
   console.log(req.body);
+  const course = {
+    id: courses.length + 1,
+    name: req.body.name,
+    teacher: req.body.teacher,
+  };
+  //add the course to the array
+  courses.push(course);
+  //after its added we send back a 201 (record created)
+  res.status(201).json(course);
 });
 
 app.listen(PORT, () => {
