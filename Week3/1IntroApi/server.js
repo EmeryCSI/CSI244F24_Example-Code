@@ -1,6 +1,7 @@
 //import our libraries
 const express = require("express");
 const cors = require("cors");
+const apiKeyMiddleware = require("./myMiddleware");
 
 //next we make an app
 const app = express();
@@ -12,6 +13,8 @@ app.use(express.json());
 //This middleware is needed to get data from the request body
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
+//if you are middleware here it fires on EVERY request
+app.use(apiKeyMiddleware);
 
 //sample data
 
@@ -63,6 +66,27 @@ app.post("/courses", (req, res) => {
   courses.push(course);
   //after its added we send back a 201 (record created)
   res.status(201).json(course);
+});
+
+//Update a record - PUT Request (A combination of GetByID and Create)
+//Put request takes in the ID of the record to be updated in the querystring(params)
+//Put request takes in the data to update in the BODY
+app.put("/courses/:id", (req, res) => {
+  const id = req.params.id;
+  console.log(id);
+  //get the record from the "database"
+  const course = courses.find((c) => c.id === parseInt(id));
+  //how do we check to see if we found anything
+  //truthy falsy values
+  if (!course) {
+    return res.status(404).send("Course not found");
+  }
+  //update the record
+  //Where is the new data?
+  course.name = req.body.name;
+  course.teacher = req.body.teacher;
+  //send back the updated record
+  res.json(course);
 });
 
 //First thing about delete: BE VERY CAREFUL WITH DELETE
