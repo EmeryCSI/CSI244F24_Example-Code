@@ -65,6 +65,25 @@ app.post("/courses", (req, res) => {
   res.status(201).json(course);
 });
 
+//First thing about delete: BE VERY CAREFUL WITH DELETE
+//In the real world you have a simulated DELETE
+//With delete an ID (primary key) comes in the query string
+app.delete("/courses/:id", (req, res) => {
+  const id = req.params.id;
+  console.log(id);
+  const course = courses.find((c) => c.id === parseInt(id));
+  //how do we check to see if we found anything
+  //truthy falsy values
+  if (!course) {
+    return res.status(404).send("Course not found");
+  }
+  const index = courses.indexOf(course);
+  //remove one element from the array at the index
+  courses.splice(index, 1);
+  //send back a response letting them know it worked.
+  res.send("Course Deleted");
+});
+
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
