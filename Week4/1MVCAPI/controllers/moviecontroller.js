@@ -30,6 +30,15 @@ class MovieController {
     //send back the new record
     res.status(201).json(newMovie);
   }
+  static updateMovie(req, res) {
+    const id = req.params.id;
+    const updatedMovie = Movie.update(id, req.body);
+    if (updatedMovie) {
+      res.json(updatedMovie);
+    } else {
+      res.status(404).json({ message: "Movie not foun" });
+    }
+  }
 }
 //export the controller
 module.exports = MovieController;

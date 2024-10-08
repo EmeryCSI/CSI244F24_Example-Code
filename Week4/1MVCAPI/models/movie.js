@@ -28,6 +28,19 @@ class Movie {
     fs.writeFileSync(filePath, JSON.stringify(movies));
     return movie;
   }
+  //method that updates
+  static update(id, updatedMovie) {
+    const movies = this.getAll();
+    const index = movies.findIndex((movie) => movie.id === parseInt(id));
+    if (index == -1) {
+      return null;
+    }
+    //This is using the spread operater
+    //... = All of the information in
+    movies[index] = { ...movies[index], ...updatedMovie };
+    fs.writeFileSync(filePath, JSON.stringify(movies));
+    return movies[index];
+  }
 }
 
 //export the Movie class so that I can use it in other modules
