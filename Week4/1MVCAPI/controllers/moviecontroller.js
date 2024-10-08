@@ -24,3 +24,5 @@ class MovieController {
     }
   }
 }
+//export the controller
+module.exports = MovieController;

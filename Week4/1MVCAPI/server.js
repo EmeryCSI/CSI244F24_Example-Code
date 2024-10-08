@@ -1,6 +1,8 @@
 //first we import
 const express = require("express");
 const cors = require("cors");
+//bring in your routes
+const movieRoutes = require("./routes/movieroutes");
 
 //Other imports as needed
 
@@ -12,9 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //defined endpoints app.get, app.post
-app.get("/", (req, res) => {
-  res.send("Hello World");
-});
+app.use("/movies", movieRoutes);
 
 //we listen  on a port
 app.listen(PORT, () => {
