@@ -23,6 +23,13 @@ class MovieController {
       res.status(404).json({ message: "Movie not found" });
     }
   }
+  //create a new movie endpoint
+  //this endpoint is hit by a post request
+  static createMovie(req, res) {
+    const newMovie = Movie.create(req.body);
+    //send back the new record
+    res.status(201).json(newMovie);
+  }
 }
 //export the controller
 module.exports = MovieController;

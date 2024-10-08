@@ -17,6 +17,17 @@ class Movie {
     const movies = this.getAll();
     return movies.find((movie) => movie.id === parseInt(id));
   }
+  //method that creates a movie
+  static create(movie) {
+    const movies = this.getAll();
+    //add an id
+    movie.id = movies.length + 1;
+    //add the new movie to the array
+    movies.push(movie);
+    //write the array to the file again
+    fs.writeFileSync(filePath, JSON.stringify(movies));
+    return movie;
+  }
 }
 
 //export the Movie class so that I can use it in other modules
