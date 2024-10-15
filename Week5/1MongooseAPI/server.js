@@ -9,13 +9,13 @@ const cors = require("cors");
 
 const PORT = process.env.PORT || 3000;
 
+//create an app
+const app = express();
+
 //middleware
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-//create an app
-const app = express();
 
 app.get("/", (req, res) => {
   res.send("Hello");
