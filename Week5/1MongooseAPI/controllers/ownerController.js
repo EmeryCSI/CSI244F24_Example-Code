@@ -5,7 +5,7 @@ const Owner = require("../models/owner");
 //you can add things to exports
 //and then skip the exports statement
 //GET - /api/owners
-exports.getAllowners = async (req, res) => {
+exports.getAllOwners = async (req, res) => {
   try {
     //find() takes a filter object and returns all records that match
     //if it is passed nothing it returns everything
