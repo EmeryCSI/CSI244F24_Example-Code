@@ -8,5 +8,6 @@ router.get("/:id", propertyController.getPropertyById);
 //is this gonna work?
 //we have to have an owner to create a property
 router.post("/owner/:ownerid", propertyController.createProperty);
+router.get("/owner/:ownerid", propertyController.getPropertiesByOwnerId);
 
 module.exports = router;

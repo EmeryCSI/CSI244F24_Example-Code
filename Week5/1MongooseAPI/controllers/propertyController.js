@@ -1,5 +1,6 @@
 //import the property model
 const Property = require("../models/property");
+const Owner = require("../models/owner");
 
 //get all properties
 //you can add things to exports
@@ -59,6 +60,26 @@ exports.createProperty = async (req, res) => {
     res.status(201).json(newProperty);
   } catch (error) {
     //send them a 500(badRequest)
+    res.status(500).json({ message: error.message });
+  }
+};
+
+//Get properties by ownerId
+//GET - /api/properties/owner/:ownerId
+exports.getPropertiesByOwnerId = async (req, res) => {
+  console.log("Getting properties by ownerId");
+  const ownerId = req.params.ownerid;
+  console.log("Owner ID:", ownerId);
+  try {
+    const owner = await Owner.findById(ownerId);
+    const properties = await Property.find({ owner: owner }).populate("owner");
+    if (properties.length === 0) {
+      return res
+        .status(404)
+        .json({ message: "No properties found for this owner" });
+    }
+    res.json(properties);
+  } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
