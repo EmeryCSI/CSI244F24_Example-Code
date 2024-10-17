@@ -46,6 +46,8 @@ exports.updateOwner = async (req, res) => {
 //Create a owner
 //POST - /api/owner
 exports.createOwner = async (req, res) => {
+  console.log("Owner Create");
+  console.log(req.body);
   const input = req.body;
   //create a new instance of Owner
   const owner = new Owner(input);
