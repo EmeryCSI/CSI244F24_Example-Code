@@ -44,11 +44,16 @@ exports.updateProperty = async (req, res) => {
 };
 
 //Create a property
-//POST - /api/property
+//POST - /api/property/owner/:ownerid
 exports.createProperty = async (req, res) => {
+  console.log("Create Property");
+  console.log(req.params);
+  console.log(req.body);
   const input = req.body;
   //create a new instance of Property
-  const property = new Property(input);
+  //object destructuring
+  //make a new property with everything from input but add the ownerid to owner
+  const property = new Property({ ...input, owner: req.params.ownerid });
   try {
     const newProperty = await property.save();
     res.status(201).json(newProperty);

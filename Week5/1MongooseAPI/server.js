@@ -2,6 +2,7 @@
 require("dotenv").config();
 //console.log(process.env.CONNECTION_STRING);
 const ownerRoutes = require("./routes/ownerRoutes");
+const propeteryRoutes = require("./routes/propertyRoutes");
 //bring in modules
 const express = require("express");
 const mongoose = require("mongoose");
@@ -30,7 +31,7 @@ app.get("/", (req, res) => {
   res.send("Hello");
 });
 app.use("/api/owners", ownerRoutes);
-
+app.use("/api/properties", propeteryRoutes);
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
