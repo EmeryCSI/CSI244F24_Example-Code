@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 //if you are middleware here it fires on EVERY request
-app.use(apiKeyMiddleware);
+//app.use(apiKeyMiddleware);
 
 //sample data
 
@@ -40,7 +40,8 @@ app.get("/courses", (req, res) => {
 //GET just one course by id
 //route parameter :param
 //if a parameter is passed it will be available in req.params
-app.get("/courses/:id", (req, res) => {
+//middleware can also be added to specific endpoints
+app.get("/courses/:id", apiKeyMiddleware, (req, res) => {
   const id = req.params.id;
   console.log(id);
   const course = courses.find((c) => c.id === parseInt(id));

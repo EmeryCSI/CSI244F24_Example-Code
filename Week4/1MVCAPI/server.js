@@ -10,7 +10,7 @@ const rateLimit = require("./middlewares/rateLimiter");
 // Create an instance of the Express application
 const app = express();
 // Set the port for the server to listen on, using an environment variable if available, or defaulting to 3000
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // Add the rate limiter middleware
 app.use(rateLimit);
