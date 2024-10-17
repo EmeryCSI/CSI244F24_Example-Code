@@ -30,6 +30,13 @@ const propertySchema = new mongoose.Schema({
   dateAdded: Date,
   //I want to add a collection of reviews in propertySchema
   reviews: [reviewSchema],
+  //Reference to the owner table
+  owner: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Owner",
+    //owner is required - What does this mean for us?
+    required: true,
+  },
 });
 
 //Create the model
