@@ -1,6 +1,24 @@
 //bring in mongoose
 const mongoose = require("mongoose");
 
+//This is an embedded review schema
+const reviewSchema = new mongoose.Schema({
+  rating: {
+    type: Number,
+    required: true,
+    min: 1,
+    max: 5,
+  },
+  comment: {
+    type: String,
+    required: true,
+  },
+  date: {
+    type: Date,
+    default: Date.now,
+  },
+});
+
 //next we make a schema
 const propertySchema = new mongoose.Schema({
   address: {
@@ -10,6 +28,8 @@ const propertySchema = new mongoose.Schema({
   bedrooms: Number,
   price: Number,
   dateAdded: Date,
+  //I want to add a collection of reviews in propertySchema
+  reviews: [reviewSchema],
 });
 
 //Create the model
