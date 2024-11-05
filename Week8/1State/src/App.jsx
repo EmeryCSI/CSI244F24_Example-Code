@@ -2,6 +2,7 @@ import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
+import ShowColors from "./Components/ShowColors";
 import IntroToState from "./Components/IntroToState";
 import FormState from "./Components/FormState";
 
@@ -14,7 +15,12 @@ function App() {
   return (
     // styling the entire app using the state variables
     <div
-      style={{ backgroundColor, color: foregroundColor, minHeight: "100vh" }}
+      style={{
+        backgroundColor,
+        color: foregroundColor,
+        minHeight: "100vh",
+        minWidth: "100vw",
+      }}
     >
       <div>
         <label>Choose a background color</label>
@@ -31,6 +37,7 @@ function App() {
         />
       </div>
       <h1>useState</h1>
+      <ShowColors background={backgroundColor} foreground={foregroundColor} />
       <IntroToState />
       <FormState />
     </div>
