@@ -13,7 +13,7 @@ class AlbumRepository {
    */
   async getAllAlbums() {
     try {
-        console.log(API_BASE_URL);
+      console.log(API_BASE_URL);
       // Make GET request to the base URL
       const response = await fetch(API_BASE_URL);
       // Check if the response status is in the 200-299 range

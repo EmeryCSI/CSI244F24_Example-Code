@@ -5,7 +5,7 @@ const cors = require("cors");
 
 // Import the game routes from the gameroutes.js file
 //const gameRoutes = require("./routes/gameroutes");
-const albumRoutes = require('./routes/albumRoutes');
+const albumRoutes = require("./routes/albumRoutes");
 
 // Create an instance of the Express application
 const app = express();
@@ -21,7 +21,7 @@ app.use(cors());
 
 // Use the game routes for any requests that start with "/api/games"
 //app.use("/api/games", gameRoutes);
-app.use('/api/albums', albumRoutes);
+app.use("/api/albums", albumRoutes);
 
 app.get("/", (req, res) => {
   res.send("Welcome to the API");
@@ -36,4 +36,3 @@ app.listen(PORT, () => {
 // It sets up the Express app, configures middleware, defines routes, and starts the server
 // The separation of routes into a separate file (movieroutes.js) follows the principle of modularity
 // This makes our code more organized, easier to maintain, and scalable
-
