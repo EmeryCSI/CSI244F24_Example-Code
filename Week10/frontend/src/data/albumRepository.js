@@ -1,4 +1,4 @@
-// Use Vite's environment variable syntax with VITE_ prefix
+// Base URL for API requests, using Vite's environment variables
 const API_BASE_URL = `${import.meta.env.VITE_API_URL}/albums`;
 
 /**
@@ -16,15 +16,17 @@ class AlbumRepository {
       console.log(API_BASE_URL);
       // Make GET request to the base URL
       const response = await fetch(API_BASE_URL);
-      // Check if the response status is in the 200-299 range
+      
+      // Validate response status
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
-      // Parse and return the JSON response
+      
+      // Parse and return JSON response
       return await response.json();
     } catch (error) {
       console.error("Error fetching albums:", error);
-      throw error; // Re-throw the error for handling by the caller
+      throw error; // Re-throw for handling by the caller
     }
   }
 
